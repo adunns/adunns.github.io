@@ -110,7 +110,7 @@ author:
   avatar           : "/assets/images/bio.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Aspiring Information Security person. I post as I learn."
   location         : "New Zealand"
-  email            : "adundunn@gmail.com"
+  email            : 
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -120,7 +120,7 @@ author:
       # url: "https://your-website.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "twitter.com/a_dunns"
+      url: "https://twitter.com/a_dunns"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
