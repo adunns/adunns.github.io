@@ -1,3 +1,9 @@
+---
+layout: single
+title: "HackTheBox Curling Writeup" 
+related: true
+---
+
 Curling is an easy rated Linux box on www.hackthebox.eu worth 20 points. This is my second ever box so I'm still learning the ropes. Unfortunately I was trying this box on the day before it closed so I only got user before it closed. I managed to get root within the hour after it closed so no points for that. Yet somehow my user points were now 0 as well. Not sure what happened there.
 
 First step as always is to run `nmap` and store it in our `nmap` folder:
