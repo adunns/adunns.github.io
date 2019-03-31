@@ -42,7 +42,7 @@ And it works. If we log in as `floris` with `Curling2018!` as the password we ar
 
 ![web credentials](/assets/images/curling5.PNG)
 
-Theres not much we can do on the blog so let's see if we can get into the Joomla admin. To get there its simply:
+Theres not much we can do on the blog so let's see if we can get into the Joomla admin. The Joomla admin area lives at:
 
 `10.10.10.150/administrator`.
 
@@ -58,7 +58,7 @@ Well over the course of doing this box, there were **SO MANY** people overwritin
 
 I wanted to find a way to get a shell **without** killing the box or disrupting it for others who were currently working on it. It took a bit more research but I found a good method (**Note:** see the link to LiveOverFlow's video at the bottom for a *much* simpler way to get the shell):
 
-There's a built in PHP reverse shell called `weevely` that's actually conveniently built into Kali Linux (you can find instructions on [github](https://github.com/epinna/weevely3)). You generate a PHP file with a password and upload it somewhere to the server where the PHP code will be executed. I needed to find another location besides that damn `index.php` file. 
+There's a PHP reverse shell called `weevely` that's actually conveniently built into Kali Linux (you can find instructions on [github](https://github.com/epinna/weevely3)). You generate a PHP file with a password and upload it somewhere to the server where the PHP code will be executed. I needed to find another location besides that damn `index.php` file. 
 
 Luckily the Joomla administrator area has the ability to install extensions. I found a file explorer called [eXtplorer](https://extplorer.net/) which is a PHP based file manager. You can install this by downloading the zip and uploading it to `Extensions > Manage > Install`.
 
@@ -168,4 +168,4 @@ Our `root.txt` hash. Awesome. If you wait around for a bit longer you'll see the
 
 So there you have it, that's how I solved the Curling box.
 
-**Note:** LiveOverflow's [video](<https://www.youtube.com/watch?v=Paajc2Dupms>) for a more thorough rundown of this box (and getting a root shell at the end). He is a PRO at this stuff so a lot of the steps he takes are a lot simpler and smarter than what I've done.
+**Note:** Watch LiveOverflow's [video](<https://www.youtube.com/watch?v=Paajc2Dupms>) for a more thorough rundown of this box (and getting a root shell at the end). He is a PRO at this stuff so a lot of the steps he takes are a lot simpler and smarter than what I've done.
