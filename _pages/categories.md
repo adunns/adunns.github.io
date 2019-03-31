@@ -26,3 +26,9 @@ permalink: /categories.html
 <ul>
 <li><a href="https://adunns.github.io/Pi-Hole/">Pi Hole Your Life</a></li>
 </ul>
+
+<h2>HackTheBox Writeups</h2>
+<ul>
+<li><a href="https://adunns.github.io/HTB-Curling/">Curling</a></li>
+</ul>
+
