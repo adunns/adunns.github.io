@@ -8,7 +8,9 @@ Curling is an easy rated Linux box on www.hackthebox.eu worth 20 points. This is
 
 First step as always is to run `nmap` and store it in our `nmap` folder:
 
-`nmap -sC -sV -oA nmap/curling 10.10.10.150`
+```shell
+nmap -sC -sV -oA nmap/curling 10.10.10.150
+```
 
 This will use the default scripts, do service detection and store the results in three formats in the folder specified.
 
@@ -42,9 +44,11 @@ And it works. If we log in as `floris` with `Curling2018!` as the password we ar
 
 ![web credentials](/assets/images/curling5.PNG)
 
-Theres not much we can do on the blog so let's see if we can get into the Joomla admin. The Joomla admin area lives at:
+There's not much we can do on the blog so let's see if we can get into the Joomla admin. The Joomla admin area lives at:
 
-`10.10.10.150/administrator`.
+```http
+10.10.10.150/administrator
+```
 
 Trying the same login works and we're now into the Joomla administrator section.
 
@@ -68,8 +72,6 @@ Ok cool, our file explorer is installed. Next we go to `Components > eXtplorer` 
 
 ![web credentials](/assets/images/curling9.PNG)
 
-
-
 In researching this where to put this non invasive file, I saw some posts of people asking what to do with malware they had found in their `/tmp` folders. This is because the `/tmp` folder usually has quite high (if not the highest) permissions so attackers often store malware here. 
 
 What we're concerned with for our `weevely` shell is making the path to the shell accessible. There's a blank file called `index.html` already in the `tmp` folder.
@@ -86,7 +88,9 @@ Success! The files are accessible. Seems we've found a perfect place to store th
 
 Cool. Now we can go to our terminal and type:
 
-`weevely http://10.10.10.150/tmp/shell.php *password*`
+```shell
+weevely http://10.10.10.150/tmp/shell.php *password*
+```
 
 ![web credentials](/assets/images/curling13.PNG)
 
@@ -110,7 +114,9 @@ A hex dump. The first few characters (BZh) indicate that this dump is of a `BZip
 
 As you can see, I loaded up the recipe it suggested and viola, we have a password file. This MUST be our `SSH` password for the user `floris`. Lets try:
 
-`ssh floris@10.10.10.150`
+```shell
+ssh floris@10.10.10.150
+```
 
 and if we enter the password, we are successfully logged in as user `floris`. Now let's get that `user.txt` file:
 
@@ -120,7 +126,7 @@ Now we need to get root. Since we don't have any further information or files th
 
 ![web credentials](/assets/images/curling19.PNG)
 
-`.bash_history` has a symbolic link to `/dev/null`. Hmm. For the method I used to get `root.txt` this was not anything of value. What is of value is what's in the`admin-area` folder. 
+For one, `.bash_history` has a symbolic link to `/dev/null`. Hmm. This was not anything of value. What is of value is what's in the`admin-area` folder. 
 
 We have a `input` file and a `report` file:
 
@@ -134,7 +140,9 @@ With a name like Curling, this box probably has something to do with the `curl` 
 
 So, some process is running that gets what lives at the address in the `input` file gets and stores the output in the `report`. We can tell this is happening because if we try rewrite the `input` file with something like:
 
-`url = "file:///etc/passwd"`
+```shell
+url = "file:///etc/passwd"
+```
 
 We get our `etc/passwd` file in `report` and then after a short interval the `input` file is rewritten to the default `url = "http://127.0.0.1"`. 
 
@@ -144,7 +152,9 @@ Also, if you look at the last modified dates you cans see the `input` and `repor
 
 Let's use `watch` to see what if we can identify the process:
 
-`watch -n1 'ps -ef | grep root | tail -15'`
+```shell
+watch -n1 'ps -ef | grep root | tail -15'
+```
 
 The `-n *num*` flag will refresh the executing program every `*num*` seconds. There's a bunch of other unimportant processes running so we cut down to the `root` permission processes at the bottom of the list with `| grep root | tail -15`:
 
@@ -154,11 +164,15 @@ And there we have our `curl` command that is being run. This confirms what we th
 
 Let's change our `input` file to the location of our `root.txt` file:
 
-`url = file:///root/root.txt`
+```shell
+url = file:///root/root.txt
+```
 
 Now if we `watch` the report file with:
 
-`watch cat report`
+```shell
+watch cat report
+```
 
 And wait for a few moments we get this:
 
