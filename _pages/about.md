@@ -5,9 +5,7 @@ title: About
 permalink: /about.html
 ---
 
-I'm a New Zealand based computer science and information systems graduate with a passion for information security, specifically topics around penetration testing. I'm currently seeking a role to further develop my technical and business skills in the information security field.
-
-My short term goal is to keep learning as much as possible about the industry and the skills & tools I'll need to succeed and gain the OSCP certification. Longer term, to work as a penetration tester.
+I'm a Vancouver (Canada) based security engineer originally from New Zealand.
 
 If I find something interesting or complete a project, I'll write about it.
 
